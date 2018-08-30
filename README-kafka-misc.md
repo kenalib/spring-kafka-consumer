@@ -61,6 +61,28 @@ log.cleaner.enable=true
 delete.topic.enable=true
 ```
 
+### config to read messages from the beginning
+
+```
+@KafkaListener(topics = "crimes", groupId = "group_json", containerFactory = "crimeKafkaListenerFactory", topicPartitions = {
+    @TopicPartition(
+        topic = "crimes",
+        partitionOffsets = @PartitionOffset(partition = "0", initialOffset = "0")
+    )
+})
+```
+
+### JSON debug snippet
+
+```
+// https://www.journaldev.com/2324/jackson-json-java-parser-api-example-tutorial
+ObjectMapper mapper = new ObjectMapper();
+mapper.configure(SerializationFeature.INDENT_OUTPUT, true);
+Crime crime = mapper.readValue(message, Crime.class);
+
+LOGGER.warn(crime.toString());
+```
+
 ### show mvn dependency
 
 ```bash

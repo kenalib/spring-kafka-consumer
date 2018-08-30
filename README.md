@@ -35,6 +35,7 @@ bin/kafka-console-consumer.sh \
 ## Spring Kafka Consumer
 
 * read data from crimes topic and deserialize JSON
+* save the JSON data to NoSQL DB Table Store
 
 ```bash
 mvn package
@@ -44,4 +45,5 @@ java -jar target/spring-kafka-consumer-0.0.1-SNAPSHOT.jar
 
 ## Reference
 
-https://kafka.apache.org/documentation/streams/
+* https://kafka.apache.org/documentation/streams/
+* https://github.com/kenalib/tablestore-java

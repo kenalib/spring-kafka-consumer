@@ -1,14 +1,16 @@
 package com.example.springkafkaconsumer.model;
 
+import java.util.Map;
+
 public class Crime {
 
     private Schema schema;
-    private CrimePayload payload;
+    private Map<String, String> payload;
 
     public Crime() {
     }
 
-    public Crime(Schema schema, CrimePayload payload) {
+    public Crime(Schema schema, Map<String, String> payload) {
         this.schema = schema;
         this.payload = payload;
     }
@@ -21,11 +23,11 @@ public class Crime {
         this.schema = schema;
     }
 
-    public CrimePayload getPayload() {
+    public Map<String, String> getPayload() {
         return payload;
     }
 
-    public void setPayload(CrimePayload payload) {
+    public void setPayload(Map<String, String> payload) {
         this.payload = payload;
     }
 
