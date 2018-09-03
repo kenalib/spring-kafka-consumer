@@ -36,10 +36,26 @@ public class TableStoreService {
 
         BatchWriteRowRequest batchWriteRowRequest = new BatchWriteRowRequest();
 
+        addRowChange(batchWriteRowRequest, crime);
+
+        asyncClient.runBatchWriteRowRequest(batchWriteRowRequest);
+    }
+
+    public void saveMulti(List<Crime> crimes) {
+        BatchWriteRowRequest batchWriteRowRequest = new BatchWriteRowRequest();
+
+        crimes.forEach(crime -> addRowChange(batchWriteRowRequest, crime));
+
+        asyncClient.runBatchWriteRowRequest(batchWriteRowRequest);
+    }
+
+    private void addRowChange(BatchWriteRowRequest batchWriteRowRequest, Crime crime) {
+        // exclude invalid data
+        if (crime.getPayload().get(primaryName) == null) return;
+
         try {
             RowPutChange rowPutChange = genRowPutChange(crime);
             batchWriteRowRequest.addRowChange(rowPutChange);
-            asyncClient.runBatchWriteRowRequest(batchWriteRowRequest);
         } catch (Exception e) {
             LOGGER.error("PrimaryKey: " + crime.getPayload().get(primaryName));
             LOGGER.error("Payload: " + crime.getPayload());

@@ -8,13 +8,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.annotation.PartitionOffset;
 import org.springframework.kafka.annotation.TopicPartition;
+import org.springframework.kafka.support.KafkaHeaders;
+import org.springframework.messaging.handler.annotation.Header;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class KafkaConsumer {
     private static final Logger LOGGER = LoggerFactory.getLogger(KafkaConsumer.class);
 
     @Autowired
+    private
     TableStoreService tableStoreService;
 
     @KafkaListener(topics = "crimes", groupId = "group_id")
@@ -23,10 +28,10 @@ public class KafkaConsumer {
     }
 
     @KafkaListener(topics = "crimes", groupId = "group_json", containerFactory = "crimeKafkaListenerFactory")
-    public void crimeJson(Crime crime) {
-        LOGGER.warn("KafkaConsumerJson message: " + crime);
+    public void crimeJson(List<Crime> crimes) {
+        LOGGER.warn("KafkaConsumerJson message size: " + crimes.size());
 
-        tableStoreService.save(crime);
+        tableStoreService.saveMulti(crimes);
     }
 
 }
