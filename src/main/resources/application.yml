@@ -7,4 +7,4 @@ kafkaconfig:
   partitionCount: 1
   retries: 3
   autoCommitEnabled: false
-  maxPollRecordsConfig: 100
+  maxPollRecordsConfig: 10

@@ -13,6 +13,7 @@ abstract class TableStoreClient {
     String accessKeyId;
     String accessKeySecret;
     String instanceName;
+    private int timeoutMilSec;
     ClientConfiguration clientConfiguration;
 
     void readAccountInfo() {
@@ -22,12 +23,13 @@ abstract class TableStoreClient {
         accessKeyId = res.getString("account.accessKeyId");
         accessKeySecret = res.getString("account.accessKeySecret");
         instanceName = res.getString("account.instanceName");
+        timeoutMilSec = Integer.parseInt(res.getString("account.timeoutMilSec"));
     }
 
     void createClientConfiguration() {
         clientConfiguration = new ClientConfiguration();
-        clientConfiguration.setConnectionTimeoutInMillisecond(5000);
-        clientConfiguration.setSocketTimeoutInMillisecond(5000);
+        clientConfiguration.setConnectionTimeoutInMillisecond(timeoutMilSec);
+        clientConfiguration.setSocketTimeoutInMillisecond(timeoutMilSec);
         clientConfiguration.setRetryStrategy(new AlwaysRetryStrategy());
     }
 
