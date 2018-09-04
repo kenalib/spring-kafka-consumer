@@ -1,0 +1,12 @@
+spring:
+  kafka:
+    bootstrap-servers: ${spring.embedded.kafka.brokers}
+kafkaconfig:
+  topic: crimes
+  groupId: crimes_gp
+  partitionCount: 1
+  retries: 3
+  autoCommitEnabled: false
+  maxPollRecordsConfig: 100
+testdata:
+  crimeTestJson: {"schema":{"type":"struct","fields":[{"type":"string","optional":true,"field":"ID"},{"type":"string","optional":true,"field":"Case Number"},{"type":"string","optional":true,"field":"Date"},{"type":"string","optional":true,"field":"Block"},{"type":"string","optional":true,"field":"IUCR"},{"type":"string","optional":true,"field":"Primary Type"},{"type":"string","optional":true,"field":"Description"},{"type":"string","optional":true,"field":"Location Description"},{"type":"string","optional":true,"field":"Arrest"},{"type":"string","optional":true,"field":"Domestic"},{"type":"string","optional":true,"field":"Beat"},{"type":"string","optional":true,"field":"District"},{"type":"string","optional":true,"field":"Ward"},{"type":"string","optional":true,"field":"Community Area"},{"type":"string","optional":true,"field":"FBI Code"},{"type":"string","optional":true,"field":"X Coordinate"},{"type":"string","optional":true,"field":"Y Coordinate"},{"type":"string","optional":true,"field":"Year"},{"type":"string","optional":true,"field":"Updated On"},{"type":"string","optional":true,"field":"Latitude"},{"type":"string","optional":true,"field":"Longitude"},{"type":"string","optional":true,"field":"Location"}],"optional":false,"name":"com.github.jcustenborder.kafka.connect.model.Value"},"payload":{"ID":"5059066","Case Number":"HM664618","Date":"10/17/2006 01:30:00 AM","Block":"045XX W VAN BUREN ST","IUCR":"0486","Primary Type":"BATTERY","Description":"DOMESTIC BATTERY SIMPLE","Location Description":"APARTMENT","Arrest":"false","Domestic":"true","Beat":"1131","District":"011","Ward":"24","Community Area":"26","FBI Code":"08B","X Coordinate":"1146219","Y Coordinate":"1897639","Year":"2006","Updated On":"04/15/2016 08:55:02 AM","Latitude":"41.875103951","Longitude":"-87.738611562","Location":"(41.875103951, -87.738611562)"}}

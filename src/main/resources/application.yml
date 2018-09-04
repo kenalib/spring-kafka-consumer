@@ -1,0 +1,10 @@
+spring:
+  kafka:
+    bootstrap-servers: 127.0.0.1:9092
+kafkaconfig:
+  topic: crimes
+  groupId: crimes_gp
+  partitionCount: 1
+  retries: 3
+  autoCommitEnabled: false
+  maxPollRecordsConfig: 100

@@ -27,7 +27,7 @@ public class KafkaConsumer {
         LOGGER.warn("KafkaConsumer message: " + message);
     }
 
-    @KafkaListener(topics = "crimes", groupId = "group_json", containerFactory = "crimeKafkaListenerFactory")
+    @KafkaListener(topics = "${kafkaconfig.topic}", id = "${kafkaconfig.groupId}", containerFactory = "crimeKafkaListenerFactory")
     public void crimeJson(List<Crime> crimes) {
         LOGGER.warn("KafkaConsumerJson message size: " + crimes.size());
 

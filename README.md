@@ -47,3 +47,5 @@ java -jar target/spring-kafka-consumer-0.0.1-SNAPSHOT.jar
 
 * https://kafka.apache.org/documentation/streams/
 * https://github.com/kenalib/tablestore-java
+* https://www.codenotfound.com/spring-kafka-batch-listener-example.html
+* https://docs.spring.io/spring-kafka/docs/current/reference/html/_reference.html#testing
